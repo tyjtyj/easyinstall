@@ -1,4 +1,5 @@
-# pts-easyinstall
+# plex-easyinstall
+As of now, this script only installs the Plex Trakt Scrobbler, not Plex
 Easy way to install the Plex Trakt scrobbler without any errors
 
-As of now this script assumes downloads Tr
+This script assumes downloads Plex is downloaded.
