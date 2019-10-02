@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 clear
 
 echo "This script will download and install:"
