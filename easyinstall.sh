@@ -47,7 +47,7 @@ then
   clear
   echo "Now downloading Plex Trakt Scrobbler"
   sleep 2
-  wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O /tmp/Plex-Trakt-Scrobbler.zip > /dev/null
+  wget -P /tmp https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip > /dev/null
   clear
   echo "Trakt downloaded"
   sudo apt-get install unzip -y > /dev/null
@@ -59,7 +59,7 @@ then
   echo "Trakt installed"
 
   #Downloading apsw.so and trakt databases
-  wget https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O /tmp/trakt.zip > /dev/null
+  wget -P /tmp https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip > /dev/null
   unzip /tmp/trakt.zip > /dev/null
 
   #Changing ownership and modifying permissions
@@ -116,8 +116,8 @@ then
   read query
   if [ $query = "y" ]
   then
-    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O /tmp/media.service > /dev/null
-    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O /tmp/media_refresh.service > /dev/null
+    wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O media.service > /dev/null
+    wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
     sed -i 's/root/$USER/g' media.service
     sed -i 's/root/$USER/g' media_refresh.service
     sudo cp media.service /etc/systemd/system/
@@ -156,7 +156,7 @@ then
   read query
   if [ $query = "y" ]
   then
-    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O /tmp/qbittorrent.service
+    wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
     sed -i 's/root/$USER/g' /tmp/qbittorrent.service
     sudo cp /tmp/qbittorrent.service /etc/systemd/system
     sudo systemctl enable qbittorrent.service
