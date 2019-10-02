@@ -95,12 +95,20 @@ then
   clear
   echo "Now downloading Rclone"
   sleep 2
+  
+  sudo mkdir /mnt/media
+  sudo chmod 777 /mnt/media
+  
   sudo apt install fuse -y > /dev/null
+  echo "user_allow_other" >> /etc/fuse.conf
+  
   # Rclone install script for Debian based systems
   curl https://rclone.org/install.sh | sudo bash
+  
   # Creating log file for rclone
   echo "" >> /opt/media.log
   sudo chmod 777 /opt/media.log
+  
   echo "Enable media.service? (y/N)"
   read query
   if [ $query = "y" ]
