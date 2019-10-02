@@ -1,0 +1,13 @@
+[Unit]
+Description=media refresh
+After=media.service
+
+[Service]
+Type=simple
+
+ExecStart=/usr/bin/rclone rc vfs/refresh recursive=true
+User=root
+Group=root
+
+[Install]
+WantedBy=multi-user.target
