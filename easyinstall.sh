@@ -36,6 +36,8 @@ then
   clear
   echo "Plex installed successfully"
   sleep 2
+else
+  echo "Skipping Plex installation"
 fi
 
 echo "Install Plex-trakt-scrobbler? (y/N)?"
@@ -76,6 +78,8 @@ then
   sudo mv com.plexapp.plugins.trakttv.db-wal "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
   clear
   echo "Moved databases"
+else
+  echo "Skipping Plex-Trakt-Scrobbler installation"
 fi
 
 sleep 2
@@ -92,7 +96,12 @@ then
   clear
   echo "Now downloading Rclone"
   sleep 2
+  sudo apt install fuse -y > /dev/null
+  # Rclone install script for Debian based systems
   curl https://rclone.org/install.sh | sudo bash
+  # Creating log file for rclone
+  echo "" >> /opt/media.log
+  sudo chmod 777 /opt/media.log
   echo "Enable media.service? (y/N)"
   read query
   if [ $query = "y" ]
@@ -102,10 +111,15 @@ then
     sudo cp media.service /etc/systemd/system/
     sudo systemctl enable media.service
     clear
-    echo "Copied media.service"
+    echo "Rclone installed"
+    sleep 1
     echo "After this script finishes, set up rclone using rclone config"
     sleep 3
   fi
+  else
+    echo "Not enabling media.service"
+else
+  echo "Not installing Rclone"
 fi
 
 echo "Install qBittorrent? (y/N)"
@@ -143,8 +157,10 @@ then
   else if [ $? -eq 1 ]
     echo "qBittorrent installed"
     echo "username: admin, password: adminadmin"
-    fi
+   fi
   fi
+else
+  echo "Not installing qBittorrent"
 fi
 
 sudo systemctl daemon-reload
@@ -154,9 +170,12 @@ read query
 if [ $query = "y" ]
 then
   clear
-  echo "Now installing Pi-Hole"
+  echo "Now installing Pi-hole"
   sleep 2
+  # Pi-hole install script
   curl -sSL https://install.pi-hole.net | bash
+else
+  echo "Not installing Pi-hole"
 fi
 
 echo "Reboot system? (y/N)"
@@ -178,5 +197,9 @@ then
   echo "System rebooting in 1"
   sleep 1
   sudo reboot
+else
+  echo "Not rebooting"
 fi
+sleep 1
+clear
 echo "Exiting script..."
