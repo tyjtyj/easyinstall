@@ -104,5 +104,19 @@ clear
 echo "Now installing Pi-Hole"
 sleep 2
 curl -sSL https://install.pi-hole.net | bash
+echo "System rebooting in 5"
+sleep 1
+clear
+echo "System rebooting in 4"
+sleep 1
+clear
+echo "System rebooting in 3"
+sleep 1
+clear
+echo "System rebooting in 2"
+sleep 1
+clear
+echo "System rebooting in 1"
+sleep 1
 
 sudo reboot
