@@ -21,32 +21,22 @@ clear
 echo "Now downloading Plex"
 sleep 2
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
+sleep 1
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 sudo apt-get update > /dev/null
-sudo apt-get install plexmediaserver -y
+sudo apt-get install plexmediaserver -y > /dev/null
 clear
 echo "Plex installed successfully"
-
-#Installing Plex-Trakt-Scrobbler using the trakt.sh script
-clear
-echo "This script assumes Plex is installed"
-sleep 3
+sleep 2
 echo "Now downloading Plex Trakt Scrobbler"
-sleep 3
+sleep 2
 cd /tmp
-
-clear
-echo "Downloading trakt"
-sleep 3
-# Downloading Plex-Trakt-Scrobbler
 wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip > /dev/null
 clear
 echo "Trakt downloaded"
-sleep 3
 sudo apt-get install unzip -y > /dev/null
 clear
 echo "Unzipping downloaded archive"
-sleep 2
 unzip Plex-Trakt-Scrobbler.zip > /dev/null
 sudo cp -r Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"
 clear
