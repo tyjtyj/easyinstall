@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 clear
 
 echo "This script will download and install:"
@@ -22,7 +21,7 @@ echo "Now downloading Plex"
 sleep 2
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
 sleep 1
-curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
+curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add - 
 sudo apt-get update > /dev/null
 sudo apt-get install plexmediaserver -y > /dev/null
 clear
@@ -77,27 +76,27 @@ sudo systemctl enable media.service
 clear
 echo "Copied media.service"
 echo "After this script finishes, set up rclone using rclone config"
-sleep 1
-
-clear
-echo "Now downloading qBittorrent"
-sleep 1
-sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
-sleep 1
-sudo apt-get update
-sudo apt-get install qbittorrent-nox -y
-cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
-clear
-echo "Change user and group to the suitable one"
-sleep 1
-sudo nano qbittorrent.service
-sudo cp qbittorrent.service /etc/systemd/system
-sudo systemctl enable qbittorrent.service
-sudo systemctl start qbittorrent.service
-clear
-echo "qBittorrent installed and running at port 8080"
-echo "username: admin, password: adminadmin"
 sleep 3
+
+#clear
+#echo "Now downloading qBittorrent"
+#sleep 1
+#sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+#sleep 1
+#sudo apt-get update > /dev/null
+#sudo apt-get install qbittorrent-nox -y > /dev/null
+#cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
+#clear
+#echo "Change user and group to the suitable one"
+#sleep 1
+#sudo nano qbittorrent.service
+#sudo cp qbittorrent.service /etc/systemd/system
+#sudo systemctl enable qbittorrent.service
+#sudo systemctl start qbittorrent.service
+#clear
+#echo "qBittorrent installed and running at port 8080"
+#echo "username: admin, password: adminadmin"
+#sleep 3
 
 sudo systemctl daemon-reload
 
