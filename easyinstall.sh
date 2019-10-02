@@ -64,9 +64,9 @@ then
   unzip trakt.zip > /dev/null
 
   #Changing ownership 
-  sudo chown root:root com.plexapp.plugins.trakttv.db
-  sudo chown root:root com.plexapp.plugins.trakttv.db-shm
-  sudo chown root:root com.plexapp.plugins.trakttv.db-wal
+  sudo chown $USER:$USER com.plexapp.plugins.trakttv.db
+  sudo chown $USER:$USER com.plexapp.plugins.trakttv.db-shm
+  sudo chown $USER:$USER com.plexapp.plugins.trakttv.db-wal
 
   sudo cp apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
   clear
@@ -109,24 +109,29 @@ then
   echo "" >> /opt/media.log
   sudo chmod 777 /opt/media.log
   
-  echo "Enable media.service? (y/N)"
+  clear
+  echo "Enable media.service and media_refresh.service? (y/N)"
   read query
   if [ $query = "y" ]
   then
     cd /tmp
-    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/media.service -O media.service > /dev/null
+    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O media.service > /dev/null
+    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
+    sed -i 's/root/$USER/g' media.service
+    sed -i 's/root/$USER/g' media_refresh.service
     sudo cp media.service /etc/systemd/system/
+    sudo cp media_refresh.service /etc/systemd/system/
     sudo systemctl enable media.service
-    clear
-    echo "Rclone installed"
-    sleep 1
+    sudo systemctl enable media_refresh.service
     echo "After this script finishes, set up rclone using rclone config"
     sleep 3
   fi
   else
     echo "Not enabling media.service"
+    sleep 2
+    echo "Rclone was installed."
 else
-  echo "Not installing Rclone"
+  echo "Not installing Rclone."
 fi
 
 echo "Install qBittorrent? (y/N)"
@@ -134,22 +139,24 @@ read query
 if [ $query = "y" ]
 then
   clear
-  echo "Now downloading qBittorrent"
+  echo "Now downloading qBittorrent."
   sleep 1
+  clear
+  echo "Now downloading qBittorrent.."
+  sleep 1
+  clear
+  echo "Now downloading qBittorrent..."
   sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
   sleep 1
   sudo apt-get update > /dev/null
   sudo apt-get install qbittorrent-nox -y > /dev/null
-  cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
   clear
   echo "Install qbittorrent.service? (y/N)?"
   read query
   if [ $query = "y" ]
   then
-    clear
-    echo "Change user and group to the suitable one"
-    sleep 1
-    sudo nano qbittorrent.service
+    cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
+    sed -i 's/root/$USER/g' qbittorrent.service
     sudo cp qbittorrent.service /etc/systemd/system
     sudo systemctl enable qbittorrent.service
     sudo systemctl start qbittorrent.service
