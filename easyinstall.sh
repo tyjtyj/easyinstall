@@ -19,19 +19,22 @@ sleep 2
 echo "Now downloading Plex"
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list > /dev/null
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add - > /dev/null
-sudo apt-get update && sudo apt-get install plexmediaserver -y > /dev/null
+sudo apt-get update > /dev/null
+sudo apt-get install plexmediaserver -y
 echo "Plex installed successfully"
 #Installing Plex-Trakt-Scrobbler using the trakt.sh script
-cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/trakt.sh -O trakt.sh > /dev/null
+cd /tmp > /dev/null
+wget https://raw.githubusercontent.com/muskingo/easyinstall/master/trakt.sh -O trakt.sh > /dev/null
 sudo chmod a+rx trakt.sh
 ./trakt.sh
 
 echo "Now downloading Rclone"
 sleep 2
 curl https://rclone.org/install.sh | sudo bash
-cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/media.service -O media.service > /dev/null
+cd /tmp > /dev/null
+wget https://raw.githubusercontent.com/muskingo/easyinstall/master/media.service -O media.service > /dev/null
 sudo cp media.service /etc/systemd/system/
-sudo systemctl enable media.service
+sudo systemctl enable media.service > /dev/null
 echo "Copied media.service"
 echo "After this script finishes, set up rclone using rclone config"
 sleep 1
