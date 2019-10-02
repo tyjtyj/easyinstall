@@ -70,6 +70,7 @@ then
   sudo mv apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
   clear
   echo "Moved apsw.so"
+  sleep 2
   sudo mv com.plexapp.plugins.trakttv.db "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
   sudo mv com.plexapp.plugins.trakttv.db-shm "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
   sudo mv com.plexapp.plugins.trakttv.db-wal "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
@@ -140,8 +141,10 @@ then
     echo "qBittorrent installed and running at port 8080"
     echo "username: admin, password: adminadmin"
   else if [ $? -eq 1 ]
-  echo "qBittorrent installed"
-  echo "username: admin, password: adminadmin"
+    echo "qBittorrent installed"
+    echo "username: admin, password: adminadmin"
+    fi
+  fi
 fi
 
 sudo systemctl daemon-reload
