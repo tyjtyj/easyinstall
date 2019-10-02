@@ -62,20 +62,19 @@ then
   #Downloading apsw.so and trakt databases
   wget https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip > /dev/null
   unzip trakt.zip > /dev/null
-  cd trakt
 
   #Changing ownership 
   sudo chown root:root com.plexapp.plugins.trakttv.db
   sudo chown root:root com.plexapp.plugins.trakttv.db-shm
   sudo chown root:root com.plexapp.plugins.trakttv.db-wal
 
-  sudo mv apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
+  sudo cp apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
   clear
   echo "Moved apsw.so"
   sleep 2
-  sudo mv com.plexapp.plugins.trakttv.db "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
-  sudo mv com.plexapp.plugins.trakttv.db-shm "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
-  sudo mv com.plexapp.plugins.trakttv.db-wal "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
+  sudo cp /tmp/trakt com.plexapp.plugins.trakttv.db "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
+  sudo cp /tmp/trakt com.plexapp.plugins.trakttv.db-shm "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
+  sudo cp /tmp/trakt com.plexapp.plugins.trakttv.db-wal "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
   clear
   echo "Moved databases"
 else
