@@ -47,31 +47,30 @@ then
   clear
   echo "Now downloading Plex Trakt Scrobbler"
   sleep 2
-  cd /tmp
-  wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip > /dev/null
+  wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O /tmp/Plex-Trakt-Scrobbler.zip > /dev/null
   clear
   echo "Trakt downloaded"
   sudo apt-get install unzip -y > /dev/null
   clear
   echo "Unzipping downloaded archive"
-  unzip Plex-Trakt-Scrobbler.zip > /dev/null
-  sudo cp -r Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"
+  unzip /tmp/Plex-Trakt-Scrobbler.zip > /dev/null
+  sudo cp -r /tmp/Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"
   clear
   echo "Trakt installed"
 
   #Downloading apsw.so and trakt databases
-  wget https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip > /dev/null
-  unzip trakt.zip > /dev/null
+  wget https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O /tmp/trakt.zip > /dev/null
+  unzip /tmp/trakt.zip > /dev/null
 
   #Changing ownership and modifying permissions
-  sudo chown plex:plex com.plexapp.plugins.trakttv.db
-  sudo chown plex:plex com.plexapp.plugins.trakttv.db-shm
-  sudo chown plex:plex com.plexapp.plugins.trakttv.db-wal
-  sudo chmod u=rw,g=r,o=r com.plexapp.plugins.trakttv.db
-  sudo chmod u=rw,g=r,o=r com.plexapp.plugins.trakttv.db-shm
-  sudo chmod u=rw,g=r,o=r com.plexapp.plugins.trakttv.db-wal
+  sudo chown plex:plex /tmp/trakt/com.plexapp.plugins.trakttv.db
+  sudo chown plex:plex /tmp/trakt/com.plexapp.plugins.trakttv.db-shm
+  sudo chown plex:plex /tmp/trakt/com.plexapp.plugins.trakttv.db-wal
+  sudo chmod u=rw,g=r,o=r /tmp/trakt/com.plexapp.plugins.trakttv.db
+  sudo chmod u=rw,g=r,o=r /tmp/trakt/com.plexapp.plugins.trakttv.db-shm
+  sudo chmod u=rw,g=r,o=r /tmp/trakt/com.plexapp.plugins.trakttv.db-wal
 
-  sudo cp apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
+  sudo cp /tmp/trakt/apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
   clear
   echo "Moved apsw.so"
   sleep 2
@@ -117,9 +116,8 @@ then
   read query
   if [ $query = "y" ]
   then
-    cd /tmp
-    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O media.service > /dev/null
-    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
+    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O /tmp/media.service > /dev/null
+    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O /tmp/media_refresh.service > /dev/null
     sed -i 's/root/$USER/g' media.service
     sed -i 's/root/$USER/g' media_refresh.service
     sudo cp media.service /etc/systemd/system/
@@ -158,9 +156,9 @@ then
   read query
   if [ $query = "y" ]
   then
-    cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
-    sed -i 's/root/$USER/g' qbittorrent.service
-    sudo cp qbittorrent.service /etc/systemd/system
+    wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O /tmp/qbittorrent.service
+    sed -i 's/root/$USER/g' /tmp/qbittorrent.service
+    sudo cp /tmp/qbittorrent.service /etc/systemd/system
     sudo systemctl enable qbittorrent.service
     sudo systemctl start qbittorrent.service
     exit 0
