@@ -37,6 +37,7 @@ echo "After this script finishes, set up rclone using rclone config"
 sleep 1
 
 echo "Now downloading qBittorrent"
+sleep 1
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable > /dev/null
 sudo apt-get update && sudo apt-get install qbittorrent-nox -y > /dev/null
 sudo adduser qbtuser --defaults
