@@ -9,6 +9,7 @@ echo "qBittorrent"
 echo "Pi-Hole"
 sleep 2
 
+clear
 echo "Downloading and installing available updates"
 sleep 2
 sudo apt-get update
@@ -23,7 +24,9 @@ curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install plexmediaserver -y
 echo "Plex installed successfully"
+
 #Installing Plex-Trakt-Scrobbler using the trakt.sh script
+clear
 echo "This script assumes Plex is installed"
 sleep 1
 echo "Press Control-C now to stop this script if it's not installed"
@@ -38,6 +41,8 @@ echo "Downloading trakt"
 # Downloading Plex-Trakt-Scrobbler
 wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip > /dev/null
 echo "Trakt downloaded"
+sudo apt-get install unzip -y
+echo "Unzipping downloaded archive"
 unzip Plex-Trakt-Scrobbler.zip > /dev/null
 sudo cp -r Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"
 echo "Trakt installed"
@@ -82,7 +87,6 @@ sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
 sleep 1
 sudo apt-get update
 sudo apt-get install qbittorrent-nox -y
-sudo adduser qbtuser --defaults
 cd /tmp && wget https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
 clear
 echo "Change user and group to the suitable one"
