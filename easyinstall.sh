@@ -24,9 +24,9 @@ echo "All updates installed successfully"
 sleep 2
 
 clear
-echo "Install Plex? (y/N)"
-read query
-if [ $query = "y" ]; then
+read -p "Install Plex? (y/N)" query
+if [ $query = "y" ]
+then
   clear
   echo "Now downloading Plex"
   sleep 2
@@ -38,8 +38,7 @@ if [ $query = "y" ]; then
   clear
   echo "Plex installed successfully"
   sleep 2
-  echo "Set up Plex using SSH Tunnel? (y/N)"
-  read query
+  read -p "Set up Plex using SSH Tunnel? (y/N)" query
   if [ $query = "y" ];
   then
     clear
@@ -66,8 +65,7 @@ else
   echo "Skipping Plex installation"
 fi
 
-echo "Install Plex-trakt-scrobbler? (y/N)?"
-read query
+read -p "Install Plex-trakt-scrobbler? (y/N)?" query
 if [ $query = "y" ];
 then
   clear
@@ -116,8 +114,7 @@ echo "Restarted Plex"
 sleep 2
 
 clear
-echo "Install Rclone? (y/N)?"
-read query
+read -p "Install Rclone? (y/N)?" query
 if [ $query = "y" ];
 then
   clear
@@ -132,8 +129,7 @@ then
   curl https://rclone.org/install.sh | sudo bash
   
   clear
-  echo "Enable media.service and media_refresh.service? (y/N)"
-  read query
+  read -p "Enable media.service and media_refresh.service? (y/N)" query
   if [ $query = "y" ];
   then
     # Creating folders for the mounting of media.service
@@ -166,8 +162,7 @@ else
   echo "Not installing Rclone."
 fi
 
-echo "Install qBittorrent? (y/N)"
-read query
+read -p "Install qBittorrent? (y/N)" query
 if [ $query = "y" ];
 then
   clear
@@ -178,8 +173,7 @@ then
   sudo apt-get update > /dev/null
   sudo apt-get install qbittorrent-nox -y > /dev/null
   clear
-  echo "Install qbittorrent.service? (y/N)?"
-  read query
+  read -p "Install qbittorrent.service? (y/N)?" query
   if [ $query = "y" ]
   then
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
@@ -206,8 +200,7 @@ fi
 
 sudo systemctl daemon-reload
 
-echo "Install Pi-Hole? (y/N)"
-read query
+read -p "Install Pi-Hole? (y/N)" query
 if [ $query = "y" ];
 then
   clear
@@ -219,8 +212,7 @@ else
   echo "Not installing Pi-hole"
 fi
 
-echo "Reboot system? (y/N)"
-read query
+read -p "Reboot system? (y/N)" query
 if [ $query = "y" ];
 then
   echo "System rebooting in 3"
