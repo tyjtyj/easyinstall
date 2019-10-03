@@ -61,6 +61,7 @@ then
     else
       exit 1
     fi
+  fi
 else
   echo "Skipping Plex installation"
 fi
