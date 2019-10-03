@@ -5,15 +5,11 @@ clear
 IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 
 echo "This script will download and install:"
-sleep 1
 echo "Plex (via it's official repository) with Trakt"
-sleep 1
 echo "Rclone"
-sleep 1
 echo "qBittorrent"
-sleep 1
 echo "Pi-Hole"
-sleep 2
+sleep 3
 
 clear
 echo "Downloading and installing available updates..."
