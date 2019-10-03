@@ -1,6 +1,9 @@
 #!/bin/bash
 clear
 
+ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' > /dev/null
+read IP_ADDRESS
+
 echo "This script will download and install:"
 sleep 1
 echo "Plex (via it's official repository) with Trakt"
@@ -13,7 +16,7 @@ echo "Pi-Hole"
 sleep 2
 
 clear
-echo "Downloading and installing available updates"
+echo "Downloading and installing available updates..."
 sleep 2
 sudo apt-get update > /dev/null
 sudo apt-get upgrade -y > /dev/null
@@ -21,7 +24,7 @@ echo "All updates installed successfully"
 sleep 2
 
 clear
-echo "Install Plex? (y/N)?"
+echo "Install Plex? (y/N)"
 read query
 if [ $query = "y" ]
 then
@@ -36,6 +39,27 @@ then
   clear
   echo "Plex installed successfully"
   sleep 2
+  echo "Setup Plex using SSH Tunnel? (y/N)"
+  read query
+  if [ $query = "y" ]
+  then
+    clear
+    echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
+    echo "PermitOpen any" >> /etc/ssh/sshd_config
+    echo "Open Terminal and copy-paste this:"
+    echo ""
+    echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
+    echo ""
+    echo "Then open up a new browser window and paste this:"
+    echo ""
+    echo "http://localhost:32400/web"
+    echo ""
+    echo "Done? (y/N)"
+    if [ $query = "y" || $query = "Y" ]
+    then
+    else
+      exit 1
+    fi
 else
   echo "Skipping Plex installation"
 fi
@@ -197,12 +221,6 @@ echo "Reboot system? (y/N)"
 read query
 if [ $query = "y" ]
 then
-  echo "System rebooting in 5"
-  sleep 1
-  clear
-  echo "System rebooting in 4"
-  sleep 1
-  clear
   echo "System rebooting in 3"
   sleep 1
   clear
