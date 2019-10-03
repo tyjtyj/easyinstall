@@ -26,8 +26,7 @@ sleep 2
 clear
 echo "Install Plex? (y/N)"
 read query
-if [ $query = "y" ];
-then
+if [ $query = "y" ]; then
   clear
   echo "Now downloading Plex"
   sleep 2
