@@ -1,4 +1,5 @@
 #!/bin/bash
+# set -e
 clear
 
 IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
@@ -131,10 +132,6 @@ then
   # Rclone install script for Debian based systems
   curl https://rclone.org/install.sh | sudo bash
   
-  # Creating log file for rclone
-  echo "" >> /opt/media.log
-  sudo chmod 777 /opt/media.log
-  
   clear
   echo "Enable media.service and media_refresh.service? (y/N)"
   read query
@@ -143,12 +140,20 @@ then
     # Creating folders for the mounting of media.service
     sudo mkdir /mnt/media
     sudo chmod 777 /mnt/media
+    
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O media.service > /dev/null
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
+    
     sed -i 's/root/$USER/g' media.service
     sed -i 's/root/$USER/g' media_refresh.service
+    
     sudo cp media.service /etc/systemd/system/
     sudo cp media_refresh.service /etc/systemd/system/
+      
+    # Creating log file for media.service
+    echo "" >> /opt/media.log
+    sudo chmod 777 /opt/media.log
+    
     sudo systemctl enable media.service > /dev/null
     sudo systemctl enable media_refresh.service > /dev/null
     echo "After this script finishes, set up rclone using rclone config"
@@ -167,13 +172,8 @@ read query
 if [ $query = "y" ]
 then
   clear
-  echo "Now downloading qBittorrent."
-  sleep 1
-  clear
-  echo "Now downloading qBittorrent.."
-  sleep 1
-  clear
   echo "Now downloading qBittorrent..."
+  sleep 2
   sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
   sleep 1
   sudo apt-get update > /dev/null
