@@ -23,7 +23,7 @@ sleep 2
 clear
 echo "Install Plex? (y/N)"
 read query
-if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+if [ "$query" = "y" ] || [ "$query" = "Y" ]
 then
   clear
   echo "Now downloading Plex"
@@ -39,7 +39,7 @@ then
   sleep 2
   echo "Set up Plex using SSH Tunnel? (y/N)" 
   read query
-  if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+  if [ "$query" = "y" ] || [ "$query" = "Y" ]
   then
     clear
     echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
@@ -55,7 +55,7 @@ then
     echo ""
     echo "Done? (y/N)"
     read query
-    if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+    if [ "$query" = "y" ] || [ "$query" = "Y" ]
     then
       sed -i 's/AllowTCPForwarding yes/# AllowTCPForwarding yes/g' /etc/ssh/sshd_config
       sed -i 's/PermitOpen any/# PermitOpen any/g' /etc/ssh/sshd_config
@@ -69,7 +69,7 @@ fi
 
 echo "Install Plex-trakt-scrobbler? (y/N)?" 
 read query
-if  [ "$query" = "y" ] || [ "$query" = "Y" ] || [ "$query" = "Y" ]
+if [ "$query" = "y" ] || [ "$query" = "Y" ] || [ "$query" = "Y" ]
 then
   clear
   echo "Now downloading Plex Trakt Scrobbler"
@@ -119,7 +119,7 @@ sleep 2
 clear
 echo "Install Rclone? (y/N)?" 
 read query
-if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+if [ "$query" = "y" ] || [ "$query" = "Y" ]
 then
   clear
   echo "Now downloading Rclone"
@@ -135,7 +135,7 @@ then
   clear
   echo "Enable media.service and media_refresh.service? (y/N)" 
   read query 
-  if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+  if [ "$query" = "y" ] || [ "$query" = "Y" ]
   then
     # Creating folders for the mounting of media.service
     sudo mkdir /mnt/media
@@ -169,7 +169,7 @@ fi
 
 echo "Install qBittorrent? (y/N)" 
 read query
-if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+if [ "$query" = "y" ] || [ "$query" = "Y" ]
 then
   clear
   echo "Now downloading qBittorrent..."
@@ -181,7 +181,7 @@ then
   clear
   echo "Install qbittorrent.service? (y/N)?" 
   read query
-  if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+  if [ "$query" = "y" ] || [ "$query" = "Y" ]
   then
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
     sed -i 's/root/$USER/g' /tmp/qbittorrent.service
@@ -209,7 +209,7 @@ sudo systemctl daemon-reload
 
 echo "Install Pi-Hole? (y/N)" 
 read query
-if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+if [ "$query" = "y" ] || [ "$query" = "Y" ]
 then
   clear
   echo "Now installing Pi-hole"
@@ -222,7 +222,7 @@ fi
 
 echo "Reboot system? (y/N)" 
 read query
-if  [ "$query" = "y" ] || [ "$query" = "Y" ]
+if [ "$query" = "y" ] || [ "$query" = "Y" ]
 then
   echo "System rebooting in 3"
   sleep 1
