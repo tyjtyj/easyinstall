@@ -124,9 +124,7 @@ then
   echo "Now downloading Rclone"
   sleep 2
   
-  sudo mkdir /mnt/media
-  sudo chmod 777 /mnt/media
-  
+  #Installing fuse to mount the virtual filesystems
   sudo apt install fuse -y > /dev/null
   echo "user_allow_other" >> /etc/fuse.conf
   
@@ -142,20 +140,23 @@ then
   read query
   if [ $query = "y" ]
   then
+    # Creating folders for the mounting of media.service
+    sudo mkdir /mnt/media
+    sudo chmod 777 /mnt/media
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O media.service > /dev/null
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
     sed -i 's/root/$USER/g' media.service
     sed -i 's/root/$USER/g' media_refresh.service
     sudo cp media.service /etc/systemd/system/
     sudo cp media_refresh.service /etc/systemd/system/
-    sudo systemctl enable media.service
-    sudo systemctl enable media_refresh.service
+    sudo systemctl enable media.service > /dev/null
+    sudo systemctl enable media_refresh.service > /dev/null
     echo "After this script finishes, set up rclone using rclone config"
     sleep 3
   fi
   else
     echo "Not enabling media.service"
-    sleep 2
+    sleep 1
     echo "Rclone was installed."
 else
   echo "Not installing Rclone."
