@@ -15,13 +15,15 @@ clear
 echo "Downloading and installing available updates..."
 sleep 2
 sudo apt-get update > /dev/null
+echo "."
 sudo apt-get upgrade -y > /dev/null
 echo "All updates installed successfully"
 sleep 2
 
 clear
-read -r -p "Install Plex? (y/N)" query
-if [ "$query" = "y" ]
+echo "Install Plex? (y/N)"
+read query
+if  [ "$query" = "y" ] || [ "$query" = "Y" ]
 then
   clear
   echo "Now downloading Plex"
@@ -30,12 +32,14 @@ then
   sleep 1
   curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add - 
   sudo apt-get update > /dev/null
+  echo "."
   sudo apt-get install plexmediaserver -y > /dev/null
   clear
   echo "Plex installed successfully"
   sleep 2
-  read -r -p "Set up Plex using SSH Tunnel? (y/N)" query
-  if [ "$query" = "y" ];
+  echo "Set up Plex using SSH Tunnel? (y/N)" 
+  read query
+  if  [ "$query" = "y" ] || [ "$query" = "Y" ];
   then
     clear
     echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
@@ -50,7 +54,8 @@ then
     echo "http://localhost:32400/web"
     echo ""
     echo "Done? (y/N)"
-    if [ "$query" = "y" ] || [ "$query" = "Y" ];
+    read query
+    if  [ "$query" = "y" ] || [ "$query" = "Y" ] || [ "$query" = "Y" ];
     then
       sed -i 's/AllowTCPForwarding yes/# AllowTCPForwarding yes/g' /etc/ssh/sshd_config
       sed -i 's/PermitOpen any/# PermitOpen any/g' /etc/ssh/sshd_config
@@ -62,8 +67,9 @@ else
   echo "Skipping Plex installation"
 fi
 
-read -r -p "Install Plex-trakt-scrobbler? (y/N)?" query
-if [ "$query" = "y" ];
+echo "Install Plex-trakt-scrobbler? (y/N)?" 
+read query
+if  [ "$query" = "y" ] || [ "$query" = "Y" ] || [ "$query" = "Y" ];
 then
   clear
   echo "Now downloading Plex Trakt Scrobbler"
@@ -105,14 +111,15 @@ else
 fi
 
 sleep 2
-sudo systemctl restart plexmediaserver
+sudo systemctl restart plexmediaserver.service
 clear
 echo "Restarted Plex"
 sleep 2
 
 clear
-read -r -p "Install Rclone? (y/N)?" query
-if [ "$query" = "y" ];
+echo "Install Rclone? (y/N)?" 
+read query
+if  [ "$query" = "y" ] || [ "$query" = "Y" ];
 then
   clear
   echo "Now downloading Rclone"
@@ -126,8 +133,9 @@ then
   curl https://rclone.org/install.sh | sudo bash
   
   clear
-  read -r -p "Enable media.service and media_refresh.service? (y/N)" query
-  if [ "$query" = "y" ];
+  echo "Enable media.service and media_refresh.service? (y/N)" 
+  read query 
+  if  [ "$query" = "y" ] || [ "$query" = "Y" ];
   then
     # Creating folders for the mounting of media.service
     sudo mkdir /mnt/media
@@ -159,8 +167,9 @@ else
   echo "Not installing Rclone."
 fi
 
-read -r -p "Install qBittorrent? (y/N)" query
-if [ "$query" = "y" ];
+echo "Install qBittorrent? (y/N)" 
+read query
+if  [ "$query" = "y" ] || [ "$query" = "Y" ];
 then
   clear
   echo "Now downloading qBittorrent..."
@@ -170,8 +179,9 @@ then
   sudo apt-get update > /dev/null
   sudo apt-get install qbittorrent-nox -y > /dev/null
   clear
-  read -r -p "Install qbittorrent.service? (y/N)?" query
-  if [ "$query" = "y" ]
+  echo "Install qbittorrent.service? (y/N)?" 
+  read query
+  if  [ "$query" = "y" ] || [ "$query" = "Y" ]
   then
     wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
     sed -i 's/root/$USER/g' /tmp/qbittorrent.service
@@ -197,8 +207,9 @@ fi
 
 sudo systemctl daemon-reload
 
-read -r -p "Install Pi-Hole? (y/N)" query
-if [ "$query" = "y" ];
+echo "Install Pi-Hole? (y/N)" 
+read query
+if  [ "$query" = "y" ] || [ "$query" = "Y" ];
 then
   clear
   echo "Now installing Pi-hole"
@@ -209,8 +220,9 @@ else
   echo "Not installing Pi-hole"
 fi
 
-read -r -p "Reboot system? (y/N)" query
-if [ "$query" = "y" ];
+echo "Reboot system? (y/N)" 
+read query
+if  [ "$query" = "y" ] || [ "$query" = "Y" ];
 then
   echo "System rebooting in 3"
   sleep 1
