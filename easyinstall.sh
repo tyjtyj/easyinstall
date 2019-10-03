@@ -1,8 +1,7 @@
 #!/bin/bash
 clear
 
-ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' > /dev/null
-read IP_ADDRESS
+IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 
 echo "This script will download and install:"
 sleep 1
@@ -39,17 +38,18 @@ then
   clear
   echo "Plex installed successfully"
   sleep 2
-  echo "Setup Plex using SSH Tunnel? (y/N)"
+  echo "Set up Plex using SSH Tunnel? (y/N)"
   read query
   if [ $query = "y" ]
   then
     clear
     echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
     echo "PermitOpen any" >> /etc/ssh/sshd_config
-    echo "Open Terminal and copy-paste this:"
-    echo ""
+    sudo service ssh restart
+    clear
+    echo "Open a terminal and copy-paste this:"
     echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
-    echo ""
+    sleep 2
     echo "Then open up a new browser window and paste this:"
     echo ""
     echo "http://localhost:32400/web"
@@ -57,6 +57,8 @@ then
     echo "Done? (y/N)"
     if [ $query = "y" || $query = "Y" ]
     then
+      sed -i 's/AllowTCPForwarding yes/# AllowTCPForwarding yes/g' /etc/ssh/sshd_config
+      sed -i 's/PermitOpen any/# PermitOpen any/g' /etc/ssh/sshd_config
     else
       exit 1
     fi
