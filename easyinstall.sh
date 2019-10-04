@@ -1,4 +1,4 @@
-#!/bin/bash
+wget ‐‐directory-prefix=#!/bin/bash
 # set -e
 clear
 
@@ -74,7 +74,7 @@ then
   clear
   echo "Now downloading Plex Trakt Scrobbler"
   sleep 2
-  wget -P /tmp https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip > /dev/null
+  wget ‐‐directory-prefix=/tmp https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip > /dev/null
   clear
   echo "Trakt downloaded"
   sudo apt-get install unzip -y > /dev/null
@@ -86,7 +86,7 @@ then
   echo "Trakt installed"
 
   #Downloading apsw.so and trakt databases
-  wget -P /tmp https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip > /dev/null
+  wget ‐‐directory-prefix=/tmp https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip > /dev/null
   unzip /tmp/trakt.zip > /dev/null
 
   #Changing ownership and modifying permissions
@@ -141,8 +141,8 @@ then
     sudo mkdir /mnt/media
     sudo chmod 777 /mnt/media
     
-    wget -P /tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service > /dev/null
-    wget -P /tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
+    wget ‐‐directory-prefix=/tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service > /dev/null
+    wget ‐‐directory-prefix=/tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
     
     sed -i 's/root/$USER/g' media.service
     sed -i 's/root/$USER/g' media_refresh.service
@@ -183,7 +183,7 @@ then
   read query
   if [ "$query" = "y" ] || [ "$query" = "Y" ]
   then
-    wget -P /tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
+    wget ‐‐directory-prefix=/tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
     sed -i 's/root/$USER/g' /tmp/qbittorrent.service
     sudo cp /tmp/qbittorrent.service /etc/systemd/system
     sudo systemctl enable qbittorrent.service
