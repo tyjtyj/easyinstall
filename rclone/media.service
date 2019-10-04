@@ -1,0 +1,24 @@
+[Unit]
+Description=rclone media mount
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=notify
+ExecStart=/usr/bin/rclone mount \
+        --config=/root/.config/rclone/rclone.conf \
+        --allow-other \
+        --allow-non-empty \
+        --dir-cache-time 48h \
+        --vfs-cache-mode writes \
+        --log-level INFO \
+        --log-file /opt/media.log \
+        --rc \
+        media:/ /mnt/media
+Restart=on-failure
+ExecStop=/bin/fusermount -u /mnt/media
+User=rcloneuser
+Group=rcloneuser
+
+[Install]
+WantedBy=multi-user.target
