@@ -141,8 +141,8 @@ then
     sudo mkdir /mnt/media
     sudo chmod 777 /mnt/media
     
-    wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media.service -O media.service > /dev/null
-    wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
+    wget -P /tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service > /dev/null
+    wget -P /tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service > /dev/null
     
     sed -i 's/root/$USER/g' media.service
     sed -i 's/root/$USER/g' media_refresh.service
@@ -183,7 +183,7 @@ then
   read query
   if [ "$query" = "y" ] || [ "$query" = "Y" ]
   then
-    wget -P /tmp https://raw.githubusercontent.com/muskingo/easyinstall/master/qbittorrent.service -O qbittorrent.service
+    wget -P /tmp https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
     sed -i 's/root/$USER/g' /tmp/qbittorrent.service
     sudo cp /tmp/qbittorrent.service /etc/systemd/system
     sudo systemctl enable qbittorrent.service
