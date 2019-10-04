@@ -105,7 +105,7 @@ then
     fi
     sed -i "s/rcloneuser/$USER/g" media.service
     sed -i "s/rcloneuser/$USER/g" media_refresh.service
-
+    # Copying systemd mounting scripts
     sudo cp media.service /etc/systemd/system/
     sudo cp media_refresh.service /etc/systemd/system/
 
@@ -116,15 +116,15 @@ then
     sudo systemctl enable media.service > /dev/null
     sudo systemctl enable media_refresh.service > /dev/null
     printf "After this script finishes, set up rclone using rclone config"
+    printf "Do not reboot until rclone is configured"
   else
     printf "Not enabling media.service"
-    sleep 2
     printf "Rclone was installed."
   fi
 else
   echo "Not installing Rclone."
 fi
-
+sleep 3
 echo "Install qBittorrent? (y/N)"
 read query
 if [ $query = "y" ]
