@@ -116,7 +116,6 @@ then
     sudo systemctl enable media.service > /dev/null
     sudo systemctl enable media_refresh.service > /dev/null
     printf "After this script finishes, set up rclone using rclone config"
-
   else
     printf "Not enabling media.service"
     sleep 2
