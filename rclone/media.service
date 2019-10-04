@@ -1,12 +1,12 @@
 [Unit]
-Description=gdrive-team_media_mount
+Description=rclone media mount
 Wants=network-online.target
 After=network-online.target
 
 [Service]
 Type=notify
 ExecStart=/usr/bin/rclone mount \
-        --config=/root/.config/rclone/rclone.conf \
+        --config= \
         --allow-other \
         --allow-non-empty \
         --dir-cache-time 48h \
@@ -15,11 +15,10 @@ ExecStart=/usr/bin/rclone mount \
         --log-file /opt/media.log \
         --rc \
         media:/ /mnt/media
-Restart=always
-RestartSec=10
+Restart=on-failure
 ExecStop=/bin/fusermount -u /mnt/media
-User=root
-Group=root
+User=rcloneuser
+Group=rcloneuser
 
 [Install]
 WantedBy=multi-user.target
