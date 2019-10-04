@@ -10,15 +10,11 @@ echo "Rclone"
 echo "qBittorrent"
 echo "Pi-Hole"
 
-
 clear
 echo "Downloading and installing available updates..."
-
 sudo apt-get update > /dev/null
-echo "."
 sudo apt-get upgrade -y > /dev/null
 echo "All updates installed successfully"
-
 
 clear
 echo "Install Plex? (y/N)"
@@ -44,13 +40,10 @@ then
     echo "PermitOpen any" >> /etc/ssh/sshd_config
     sudo service ssh restart
     clear
-    echo "Open a terminal and copy-paste this:"
-    echo ""
+    printf "Open a terminal and copy-paste this:\n"
     echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
-    echo "Then open up a new browser window and paste this:"
-    echo ""
-    echo "http://localhost:32400/web"
-    echo ""
+    printf "Then open up a new browser window and paste this:\n"
+    printf "http://localhost:32400/web\n"
     echo "Done? (y/N)"
     read status
     if [ $status = "y" ] || [ $status = "Y" ]
@@ -102,10 +95,8 @@ then
 
     LOCATION=$(rclone config file)
     
-    echo "Replace config with:"
-    echo ""
-    echo "$LOCATION"
-    echo ""
+    printf "Replace the config line with:\n"
+    printf "$LOCATION\n"
     echo "Ready to proceed? (y/N)"
     read answer
     if [ $answer = "y" ] || [ $answer = "Y" ]
