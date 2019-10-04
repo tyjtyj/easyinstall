@@ -19,7 +19,7 @@ printf "All updates installed successfully"
 clear
 echo "Install Plex? (y/N)"
 read reply
-if [[ $reply = "y" ]
+if [ $reply = "y" ]
 then
   echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
   sleep 1
