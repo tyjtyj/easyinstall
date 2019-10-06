@@ -58,7 +58,7 @@ echo "Install Plex-trakt-scrobbler? (y/N)?"
 read query
 if [ $query = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_trakt.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_files/ei_trakt.sh | sudo bash
 else
   printf "Skipping Plex-Trakt-Scrobbler installation"
 fi
@@ -129,7 +129,7 @@ echo "Install qBittorrent? (y/N)"
 read query
 if [ $query = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_qbittorrent.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_files/ei_qbittorrent.sh | sudo bash
 else
   printf "Not installing qBittorrent"
 fi
