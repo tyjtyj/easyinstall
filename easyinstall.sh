@@ -30,7 +30,8 @@ echo "Install Plex-trakt-scrobbler? (y/N)?"
 read input
 if [ $input = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/trakt.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/trakt.sh
+  sudo bash trakt.sh
 else
   echo "Skipping Plex-Trakt-Scrobbler installation"
 fi
@@ -40,7 +41,8 @@ echo "Install Rclone? (y/N)?"
 read input
 if [ $input = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/rclone.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/rclone.sh
+  sudo bash rclone.sh
 else
   echo "Not installing Rclone."
 fi
@@ -49,7 +51,8 @@ echo "Install qBittorrent? (y/N)"
 read input
 if [ $input = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/bittorrent.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/bittorrent.sh
+  sudo bash qbittorrent.sh
 else
   echo "Not installing qBittorrent"
 fi

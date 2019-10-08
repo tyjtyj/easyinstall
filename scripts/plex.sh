@@ -33,3 +33,4 @@ then
   fi
 fi
 echo "Plex installed"
+sleep 3
