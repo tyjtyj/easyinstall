@@ -1,12 +1,12 @@
 #!/bin/bash
 
 clear
-printf "Now downloading qBittorrent..."
+echo "Now downloading qBittorrent..."
 sleep 2
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
 sudo apt-get update > /dev/null
 sudo apt-get install qbittorrent-nox -y > /dev/null
-printf "Installed"
+echo "Installed"
 clear
 echo "Install qbittorrent.service? (y/N)?"
 read query
@@ -24,10 +24,10 @@ else
 fi
 if [ $? -eq 0 ]
 then
-  printf "qBittorrent installed and running at port 8080"
-  printf "username: admin, password: adminadmin"
+  echo "qBittorrent installed and running at port 8080"
+  echo "username: admin, password: adminadmin"
 elif [ $? -eq 1 ]
 then
-  printf "qBittorrent installed"
-  printf "username: admin, password: adminadmin"
+  echo "qBittorrent installed"
+  echo "username: admin, password: adminadmin"
 fi

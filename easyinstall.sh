@@ -4,17 +4,17 @@ clear
 
 IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
 
-printf "This script will download and install:"
-printf "Plex (via it's official repository) with Trakt"
-printf "Rclone"
-printf "qBittorrent"
-printf "Pi-Hole"
+echo "This script will download and install:"
+echo "Plex (via it's official repository) with Trakt"
+echo "Rclone"
+echo "qBittorrent"
+echo "Pi-Hole"
 
 clear
-printf "Downloading and installing available updates..."
+echo "Downloading and installing available updates..."
 sudo apt-get update > /dev/null
 sudo apt-get upgrade -y > /dev/null
-printf "All updates installed successfully"
+echo "All updates installed successfully"
 
 echo "Install Plex? (y/N)"
 read reply
@@ -25,10 +25,10 @@ then
   curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
   sudo apt-get update > /dev/null
   clear
-  printf "Now downloading Plex"
+  echo "Now downloading Plex"
   sudo apt-get install plexmediaserver -y > /dev/null
   clear
-  printf "Plex installed successfully"
+  echo "Plex installed successfully"
   echo "Set up Plex using SSH Tunnel? (y/N)"
   read query
   if [ $query = "y" ]
@@ -38,7 +38,7 @@ then
     echo "PermitOpen any" >> /etc/ssh/sshd_config
     sudo service ssh restart
     clear
-    printf "Open a terminal and copy-paste this:\n"
+    echo "Open a terminal and copy-paste this:\n"
     echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
     printf "Then open up a new browser window and paste this:\n"
     printf "http://localhost:32400/web\n"
@@ -51,7 +51,7 @@ then
     fi
   fi
 else
-  printf "Skipping Plex installation"
+  echo "Skipping Plex installation"
 fi
 
 echo "Install Plex-trakt-scrobbler? (y/N)?"
@@ -60,7 +60,7 @@ if [ $query = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_files/ei_trakt.sh | sudo bash
 else
-  printf "Skipping Plex-Trakt-Scrobbler installation"
+  echo "Skipping Plex-Trakt-Scrobbler installation"
 fi
 
 clear
@@ -69,7 +69,7 @@ read query
 if [ $query = "y" ]
 then
   clear
-  printf "Now downloading Rclone"
+  echo "Now downloading Rclone"
 
   #Installing fuse to mount the virtual filesystems
   sudo apt install fuse -y > /dev/null
@@ -115,11 +115,11 @@ then
 
     sudo systemctl enable media.service > /dev/null
     sudo systemctl enable media_refresh.service > /dev/null
-    printf "After this script finishes, set up rclone using rclone config"
-    printf "Do not reboot until rclone is configured"
+    echo "After this script finishes, set up rclone using rclone config"
+    echo "Do not reboot until rclone is configured"
   else
-    printf "Not enabling media.service"
-    printf "Rclone was installed."
+    echo "Not enabling media.service"
+    echo "Rclone was installed."
   fi
 else
   echo "Not installing Rclone."
@@ -131,7 +131,7 @@ if [ $query = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_files/ei_qbittorrent.sh | sudo bash
 else
-  printf "Not installing qBittorrent"
+  echo "Not installing qBittorrent"
 fi
 
 sudo systemctl daemon-reload
@@ -141,21 +141,21 @@ read query
 if [ $query = "y" ]
 then
   clear
-  printf "Now installing Pi-hole"
+  echo "Now installing Pi-hole"
   # Pi-hole install script
   curl -sSL https://install.pi-hole.net | bash
 else
-  printf "Not installing Pi-hole"
+  echo "Not installing Pi-hole"
 fi
 
 echo "Reboot system? (y/N)"
 read query
 if [ $query = "y" ]
 then
-  printf "System rebooting in 3"
+  echo "System rebooting in 3"
   sleep 3
   sudo reboot
 else
-  printf "Not rebooting"
+  echo "Not rebooting"
 fi
-printf "Exiting script..."
+echo "Exiting script..."
