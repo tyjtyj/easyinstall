@@ -18,7 +18,7 @@ if [[ $input == "Y" || $input == "y" ]]; then
   printf "Open a terminal and copy-paste this:\n"
   echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
   printf "Then open up a new browser window and paste this:\n"
-  printf "http://localhost:32400/web\n"
+  printf "http://$IP_ADDRESS:32400/web\n"
   read -p -r -n1 "Done? (y/N)" input
   if [[ $input == "Y" || $input == "y" ]]; then
     sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config

@@ -17,7 +17,7 @@ sleep 2
 
 read -p -r -n1 "Install Plex? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/template_plex.sh | sudo bash
 else
   echo "Skipping Plex installation"
 fi
