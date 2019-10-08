@@ -22,7 +22,6 @@ if [[ $input == "Y" || $input == "y" ]]; then
   echo "Done? (y/N)"
   read input
   if [[ $input == "Y" || $input == "y" ]]; then
-  then
     sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config
     sed -i 's/PermitOpen any/#/g' /etc/ssh/sshd_config
   fi
