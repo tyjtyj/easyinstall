@@ -9,7 +9,7 @@ sudo apt update
 sudo apt install plexmediaserver -y
 clear
 printf "Plex downloaded.\n"
-read -p -n1 "Set up Plex using SSH Tunnel? (y/N)" input
+read -p -r -n1 "Set up Plex using SSH Tunnel? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
   echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
   echo "PermitOpen any" >> /etc/ssh/sshd_config
@@ -19,8 +19,7 @@ if [[ $input == "Y" || $input == "y" ]]; then
   echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
   printf "Then open up a new browser window and paste this:\n"
   printf "http://localhost:32400/web\n"
-  echo "Done? (y/N)"
-  read input
+  read -p -r -n1 "Done? (y/N)" input
   if [[ $input == "Y" || $input == "y" ]]; then
     sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config
     sed -i 's/PermitOpen any/#/g' /etc/ssh/sshd_config

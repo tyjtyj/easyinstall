@@ -8,7 +8,7 @@ sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
 sudo apt-get update > /dev/null
 sudo apt-get install qbittorrent-nox -y > /dev/null
 echo "Installed"
-read -p -n1 "Install qbittorrent.service? (y/N)?" input
+read -p -r -n1 "Install qbittorrent.service? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then
   cd /etc/systemd/system
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
