@@ -1,8 +1,7 @@
 #!/bin/bash
 
 clear
-echo "This script assumes Plex Media Server is installed."
-echo "Now downloading Plex Trakt Scrobbler..."
+echo "easyinstall for Plex-Trakt-Scrobbler"
 sleep 2
 sudo apt-get install unzip -y
 # Downloading Plex-Trakt-Scrobbler

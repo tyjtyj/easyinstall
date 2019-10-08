@@ -30,7 +30,7 @@ wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_r
 LOCATION=$(rclone config file)
 clear
 printf "Replace the config line with:\n$LOCATION"
-sleep 5
+sleep 10
 sudo nano media.refresh
 
 sed -i "s/rcloneuser/$USER/g" media.service
