@@ -9,8 +9,7 @@ sudo apt-get update > /dev/null
 sudo apt-get install qbittorrent-nox -y > /dev/null
 echo "Installed"
 read -p -n1 "Install qbittorrent.service? (y/N)?" input
-if [ $input = "y" ]
-then
+if [[ $input == "Y" || $input == "y" ]]; then
   cd /etc/systemd/system
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
   sed -i "s/qbtuser/$USER/g" /etc/systemd/system/qbittorrent.service
@@ -21,10 +20,8 @@ else
   exit 1
 fi
 if [ $? -eq 0 ]
-then
   echo "qBittorrent installed and running at port "$IP_ADDRESS":8080"
 elif [ $? -eq 1 ]
-then
   echo "qBittorrent installed"
 fi
 echo "username: admin, password: adminadmin"
