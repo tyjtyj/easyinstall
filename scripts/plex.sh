@@ -1,19 +1,16 @@
 #!/bin/bash
 
-clear
+IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+
 Now "Now downloading Plex"
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
-sleep 1
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 sudo apt update
-clear
-sleep 3
 sudo apt install plexmediaserver -y
 clear
 printf "Plex downloaded.\n"
-echo "Set up Plex using SSH Tunnel? (y/N)"
-read input
-if [ "$input" = "y" ]
+read -p -n1 "Set up Plex using SSH Tunnel? (y/N)" input
+if [ $input = "y" ]
 then
   echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
   echo "PermitOpen any" >> /etc/ssh/sshd_config
@@ -25,7 +22,7 @@ then
   printf "http://localhost:32400/web\n"
   echo "Done? (y/N)"
   read input
-  if [ "$input" = "y" ]
+  if [ $input = "y" ]
   then
     sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config
     sed -i 's/PermitOpen any/#/g' /etc/ssh/sshd_config

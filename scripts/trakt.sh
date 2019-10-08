@@ -8,7 +8,6 @@ sleep 2
 # Downloading Plex-Trakt-Scrobbler
 cd /tmp
 wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip
-clear
 echo "Trakt downloaded"
 unzip /tmp/Plex-Trakt-Scrobbler.zip > /dev/null
 sudo cp -r Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"

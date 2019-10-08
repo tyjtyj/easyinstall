@@ -1,21 +1,19 @@
 #!/bin/bash
 
-clear
+IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1')
+
 echo "Now downloading qBittorrent..."
 sleep 2
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
 sudo apt-get update > /dev/null
 sudo apt-get install qbittorrent-nox -y > /dev/null
 echo "Installed"
-clear
-echo "Install qbittorrent.service? (y/N)?"
-read input
-if [ "$input" = "y" ]
+read -p -n1 "Install qbittorrent.service? (y/N)?" input
+if [ $input = "y" ]
 then
-  cd /tmp
+  cd /etc/systemd/system
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
-  sed -i "s/qbtuser/$USER/g" /tmp/qbittorrent.service
-  sudo cp /tmp/qbittorrent.service /etc/systemd/system
+  sed -i "s/qbtuser/$USER/g" /etc/systemd/system/qbittorrent.service
   sudo systemctl enable qbittorrent.service
   sudo systemctl start qbittorrent.service
   exit 0
@@ -24,10 +22,9 @@ else
 fi
 if [ $? -eq 0 ]
 then
-  echo "qBittorrent installed and running at port 8080"
-  echo "username: admin, password: adminadmin"
+  echo "qBittorrent installed and running at port "$IP_ADDRESS":8080"
 elif [ $? -eq 1 ]
 then
   echo "qBittorrent installed"
-  echo "username: admin, password: adminadmin"
 fi
+echo "username: admin, password: adminadmin"

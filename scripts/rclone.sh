@@ -5,20 +5,29 @@ echo "Now downloading Rclone"
 
 #Installing fuse to mount the virtual filesystems
 sudo apt install fuse -y > /dev/null
-echo "user_allow_other" >> /etc/fuse.conf
+sudo rm /etc/fuse.conf
+echo "
+# /etc/fuse.conf - Configuration file for Filesystem in Userspace (FUSE)
+
+# Set the maximum number of FUSE mounts allowed to non-root users.
+# The default is 1000.
+#mount_max = 1000
+
+# Allow non-root users to specify the allow_other or allow_root mount options.
+user_allow_other" >> /etc/fuse.conf
+sudo chmod u=rw,g=r,o=r /etc/fuse.conf
 
 # Rclone install script for Debian based systems
 curl https://rclone.org/install.sh | sudo bash
 clear
-echo "Enable media.service and media_refresh.service? (y/N)"
-read input
-if [ "$input" = "y" ]
+read -p -n1 "Enable media.service and media_refresh.service? (y/N)" input
+if [ $input = "y" ]
 then
   # Creating folders for the mounting of media.service
   sudo mkdir /mnt/media
   sudo chmod 777 /mnt/media
 
-  cd /tmp
+  cd /etc/systemd/system/
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
   clear
@@ -27,19 +36,15 @@ then
 
   printf "Replace the config line with:\n"
   printf "$LOCATION\n"
-  echo "Ready to proceed? (y/N)"
-  read answer
-  if [ $answer = "y" ]
+  read -p -n1 "Ready to proceed? (y/N)" input
+  if [ $input = "y" ]
   then
     sudo nano media.refresh
   else
-    exit 0
+    exit 1
   fi
   sed -i "s/rcloneuser/$USER/g" media.service
   sed -i "s/rcloneuser/$USER/g" media_refresh.service
-  # Copying systemd mounting scripts
-  sudo cp media.service /etc/systemd/system/
-  sudo cp media_refresh.service /etc/systemd/system/
 
   # Creating log file for media.service
   echo "" >> /opt/media.log
