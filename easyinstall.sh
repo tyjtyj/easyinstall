@@ -51,7 +51,7 @@ echo "Install qBittorrent? (y/N)"
 read input
 if [ $input = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/bittorrent.sh
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/qbittorrent.sh
   sudo bash qbittorrent.sh
 else
   echo "Not installing qBittorrent"
