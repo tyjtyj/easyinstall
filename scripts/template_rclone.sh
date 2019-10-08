@@ -23,7 +23,7 @@ curl https://rclone.org/install.sh | sudo bash
 sudo mkdir /mnt/media
 sudo chmod 777 /mnt/media
 
-cd /etc/systemd/system/
+cd
 wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service
 wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
 
@@ -31,7 +31,7 @@ LOCATION=$(rclone config file)
 clear
 printf "Replace the config line with:\n$LOCATION"
 sleep 10
-sudo nano media.refresh
+sudo nano /etc/systemd/system/media.service
 
 sed -i "s/rcloneuser/$USER/g" media.service
 sed -i "s/rcloneuser/$USER/g" media_refresh.service
