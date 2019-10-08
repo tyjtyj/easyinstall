@@ -1,4 +1,5 @@
 #!/bin/bash
+
 clear
 echo "This script assumes Plex Media Server is installed."
 echo "Now downloading Plex Trakt Scrobbler..."
@@ -34,4 +35,4 @@ sleep 3
 sudo systemctl restart plexmediaserver
 echo "Restarted Plex"
 sleep 2
-echo "Completed"
+echo "Trakt is now installed"
