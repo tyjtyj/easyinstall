@@ -27,3 +27,4 @@ if [[ $input == "Y" || $input == "y" ]]; then
 fi
 echo "Plex installed"
 sleep 3
+exit 0

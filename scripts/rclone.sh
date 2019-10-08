@@ -55,3 +55,4 @@ else
   echo "Not enabling media.service"
   echo "Rclone was installed."
 fi
+exit 0

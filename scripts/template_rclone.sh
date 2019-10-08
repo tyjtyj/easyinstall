@@ -46,4 +46,4 @@ echo "After this script finishes, set up rclone using rclone config"
 echo "Do not reboot until rclone is configured"
 echo "Not enabling media.service"
 echo "Rclone was installed."
-fi
+exit 0
