@@ -31,5 +31,5 @@ then
     sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config
     sed -i 's/PermitOpen any/#/g' /etc/ssh/sshd_config
   fi
-  echo "Plex installed"
 fi
+echo "Plex installed"
