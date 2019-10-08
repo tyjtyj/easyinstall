@@ -6,21 +6,23 @@ echo "This script will download and install:"
 echo "Plex (via it's official repository) with Trakt"
 echo "Rclone"
 echo "qBittorrent"
-printf "Pi-Hole\n"
+printf "Pi-Hole\n\n\n"
 
 echo "Downloading and installing available updates..."
-sudo apt update > /dev/null
-sudo apt upgrade -y > /dev/null
+sleep 2
+sudo apt update
+sudo apt upgrade -y
+sleep 2
 echo "All updates installed successfully"
 
-read -p -n1 "Install Plex? (y/N)" input
+read -p -r -n1 "Install Plex? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh | sudo bash
 else
   echo "Skipping Plex installation"
 fi
 
-read -p -n1 "Install Plex-trakt-scrobbler? (y/N)?" input
+read -p -r -n1 "Install Plex-trakt-scrobbler? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/trakt.sh | sudo bash
 else
@@ -28,14 +30,14 @@ else
 fi
 
 clear
-read -p -n1 "Install Rclone? (y/N)?" input
+read -p -r -n1 "Install Rclone? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/rclone.sh | sudo bash
 else
   echo "Not installing Rclone."
 fi
 
-read -p -n1 "Install qBittorrent? (y/N)" input
+read -p -r -n1 "Install qBittorrent? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
   # qBittorrent un-official install scipt
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/qbittorrent.sh | sudo bash
@@ -44,7 +46,7 @@ else
 fi
 
 sudo systemctl daemon-reload
-read -p -n1 "Install Pi-Hole? (y/N)" input
+read -p -r -n1 "Install Pi-Hole? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
   clear
   echo "Now installing Pi-hole"
@@ -54,7 +56,7 @@ else
   echo "Not installing Pi-hole"
 fi
 
-read -p -n1 "Reboot system? (y/N)" input
+read -p -r -n1 "Reboot system? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
   echo "System rebooting in 3"
   sleep 3
@@ -63,3 +65,4 @@ else
   echo "Not rebooting"
 fi
 echo "Exiting script..."
+exit 0
