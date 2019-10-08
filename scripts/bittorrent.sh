@@ -9,8 +9,8 @@ sudo apt-get install qbittorrent-nox -y > /dev/null
 echo "Installed"
 clear
 echo "Install qbittorrent.service? (y/N)?"
-read query
-if [ $query = "y" ]
+read input
+if [ $input = "y" ]
 then
   cd /tmp
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service

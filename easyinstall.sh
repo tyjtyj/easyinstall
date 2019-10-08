@@ -17,56 +17,27 @@ sudo apt-get upgrade -y > /dev/null
 echo "All updates installed successfully"
 
 echo "Install Plex? (y/N)"
-read reply
-if [[ $reply = "y" ]
+read input
+if [ $reply = "y" ]
 then
-  echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
-  sleep 1
-  curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
-  sudo apt-get update > /dev/null
-  clear
-  echo "Now downloading Plex"
-  sudo apt-get install plexmediaserver -y > /dev/null
-  clear
-  echo "Plex installed successfully"
-  echo "Set up Plex using SSH Tunnel? (y/N)"
-  read query
-  if [ $query = "y" ]
-  then
-    clear
-    echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
-    echo "PermitOpen any" >> /etc/ssh/sshd_config
-    sudo service ssh restart
-    clear
-    echo "Open a terminal and copy-paste this:\n"
-    echo "ssh -L 32400:localhost:32400 $USER@$IP_ADDRESS"
-    printf "Then open up a new browser window and paste this:\n"
-    printf "http://localhost:32400/web\n"
-    echo "Done? (y/N)"
-    read status
-    if [ $status = "y" ]
-    then
-      sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config
-      sed -i 's/PermitOpen any/#/g' /etc/ssh/sshd_config
-    fi
-  fi
+  wget https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh -O plex.sh | sudo bash
 else
   echo "Skipping Plex installation"
 fi
 
 echo "Install Plex-trakt-scrobbler? (y/N)?"
-read query
-if [ $query = "y" ]
+read input
+if [ $input = "y" ]
 then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_files/ei_trakt.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/trakt.sh | sudo bash
 else
   echo "Skipping Plex-Trakt-Scrobbler installation"
 fi
 
 clear
 echo "Install Rclone? (y/N)?"
-read query
-if [ $query = "y" ]
+read input
+if [ $input = "y" ]
 then
   clear
   echo "Now downloading Rclone"
@@ -79,8 +50,8 @@ then
   curl https://rclone.org/install.sh | sudo bash
   clear
   echo "Enable media.service and media_refresh.service? (y/N)"
-  read query
-  if [ $query = "y" ]
+  read input
+  if [ $input = "y" ]
   then
     # Creating folders for the mounting of media.service
     sudo mkdir /mnt/media
@@ -126,8 +97,8 @@ else
 fi
 sleep 3
 echo "Install qBittorrent? (y/N)"
-read query
-if [ $query = "y" ]
+read input
+if [ $input = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/ei_files/ei_qbittorrent.sh | sudo bash
 else
@@ -137,8 +108,8 @@ fi
 sudo systemctl daemon-reload
 clear
 echo "Install Pi-Hole? (y/N)"
-read query
-if [ $query = "y" ]
+read input
+if [ $input = "y" ]
 then
   clear
   echo "Now installing Pi-hole"
@@ -149,8 +120,8 @@ else
 fi
 
 echo "Reboot system? (y/N)"
-read query
-if [ $query = "y" ]
+if [ $input = "y" ]
+read input
 then
   echo "System rebooting in 3"
   sleep 3
