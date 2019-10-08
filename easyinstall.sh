@@ -12,8 +12,8 @@ echo "Downloading and installing available updates..."
 sleep 2
 sudo apt update
 sudo apt upgrade -y
-sleep 2
 echo "All updates installed successfully"
+sleep 2
 
 read -p -r -n1 "Install Plex? (y/N)" input
 if [[ $input == "Y" || $input == "y" ]]; then
