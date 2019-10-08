@@ -13,7 +13,7 @@ clear
 printf "Plex downloaded.\n"
 echo "Set up Plex using SSH Tunnel? (y/N)"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
   echo "PermitOpen any" >> /etc/ssh/sshd_config
@@ -25,7 +25,7 @@ then
   printf "http://localhost:32400/web\n"
   echo "Done? (y/N)"
   read input
-  if [ $input = "y" ]
+  if [ "$input" = "y" ]
   then
     sed -i 's/AllowTCPForwarding yes/#/g' /etc/ssh/sshd_config
     sed -i 's/PermitOpen any/#/g' /etc/ssh/sshd_config
