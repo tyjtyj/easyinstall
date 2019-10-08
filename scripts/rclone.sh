@@ -21,7 +21,7 @@ sudo chmod u=rw,g=r,o=r /etc/fuse.conf
 curl https://rclone.org/install.sh | sudo bash
 clear
 read -p -n1 "Enable media.service and media_refresh.service? (y/N)" input
-if [  $input = "y"  ]
+if [ $input = "y" ]
 then
   # Creating folders for the mounting of media.service
   sudo mkdir /mnt/media
@@ -37,7 +37,7 @@ then
   printf "Replace the config line with:\n"
   printf "$LOCATION\n"
   read -p -n1 "Ready to proceed? (y/N)" input
-  if [  $input = "y"  ]
+  if [ $input = "y" ]
   then
     sudo nano media.refresh
   else
