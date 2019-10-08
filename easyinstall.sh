@@ -20,7 +20,7 @@ echo "Install Plex? (y/N)"
 read input
 if [[ $input = "y" ]]
 then
-  wget https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh
   sudo bash plex.sh
 else
   echo "Skipping Plex installation"
