@@ -5,17 +5,16 @@ Now "Now downloading Plex"
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
 sleep 1
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
-sudo apt update > /dev/null
+sudo apt update
 clear
-echo "Now downloading Plex"
-sudo apt install plexmediaserver -y > /dev/null
+sleep 3
+sudo apt install plexmediaserver -y
 clear
 printf "Plex downloaded.\n"
 echo "Set up Plex using SSH Tunnel? (y/N)"
 read input
 if [ $input = "y" ]
 then
-  clear
   echo "AllowTCPForwarding yes" >> /etc/ssh/sshd_config
   echo "PermitOpen any" >> /etc/ssh/sshd_config
   sudo service ssh restart
