@@ -18,7 +18,7 @@ echo "All updates installed successfully"
 
 echo "Install Plex? (y/N)"
 read input
-if [ $reply = "y" ]
+if [ $input = "y" ]
 then
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh -O plex.sh | sudo bash
 else
