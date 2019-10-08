@@ -10,7 +10,7 @@ echo "Installed"
 clear
 echo "Install qbittorrent.service? (y/N)?"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   cd /tmp
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service

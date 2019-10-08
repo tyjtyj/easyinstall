@@ -18,7 +18,7 @@ echo "All updates installed successfully"
 
 echo "Install Plex? (y/N)"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/plex.sh | sudo bash
 else
@@ -27,7 +27,7 @@ fi
 
 echo "Install Plex-trakt-scrobbler? (y/N)?"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/trakt.sh
   sudo bash trakt.sh
@@ -38,7 +38,7 @@ fi
 clear
 echo "Install Rclone? (y/N)?"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/rclone.sh
   sudo bash rclone.sh
@@ -48,7 +48,7 @@ fi
 sleep 3
 echo "Install qBittorrent? (y/N)"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/qbittorrent.sh
   sudo bash qbittorrent.sh
@@ -60,7 +60,7 @@ sudo systemctl daemon-reload
 clear
 echo "Install Pi-Hole? (y/N)"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   clear
   echo "Now installing Pi-hole"
@@ -71,7 +71,7 @@ else
 fi
 
 echo "Reboot system? (y/N)"
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 read input
 then
   echo "System rebooting in 3"

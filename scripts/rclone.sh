@@ -12,7 +12,7 @@ curl https://rclone.org/install.sh | sudo bash
 clear
 echo "Enable media.service and media_refresh.service? (y/N)"
 read input
-if [ $input = "y" ]
+if [ "$input" = "y" ]
 then
   # Creating folders for the mounting of media.service
   sudo mkdir /mnt/media
