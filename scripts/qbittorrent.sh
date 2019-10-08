@@ -5,8 +5,8 @@ IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep 
 echo "Now downloading qBittorrent..."
 sleep 2
 sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
-sudo apt-get update > /dev/null
-sudo apt-get install qbittorrent-nox -y > /dev/null
+sudo apt-get update
+sudo apt-get install qbittorrent-nox -y
 echo "Installed"
 read -p -r -n1 "Install qbittorrent.service? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then

@@ -4,7 +4,7 @@ clear
 echo "Now downloading Rclone"
 
 #Installing fuse to mount the virtual filesystems
-sudo apt install fuse -y > /dev/null
+sudo apt install fuse -y
 sudo rm /etc/fuse.conf
 echo "
 # /etc/fuse.conf - Configuration file for Filesystem in Userspace (FUSE)
@@ -29,10 +29,9 @@ if [[ $input == "Y" || $input == "y" ]]; then
   cd /etc/systemd/system/
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service
   wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
-  clear
 
   LOCATION=$(rclone config file)
-
+  clear
   printf "Replace the config line with:\n"
   printf "$LOCATION\n"
   read -p -r -n1 "Ready to proceed? (y/N)" input
@@ -48,8 +47,8 @@ if [[ $input == "Y" || $input == "y" ]]; then
   echo "" >> /opt/media.log
   sudo chmod 777 /opt/media.log
 
-  sudo systemctl enable media.service > /dev/null
-  sudo systemctl enable media_refresh.service > /dev/null
+  sudo systemctl enable media.service
+  sudo systemctl enable media_refresh.service
   echo "After this script finishes, set up rclone using rclone config"
   echo "Do not reboot until rclone is configured"
 else
