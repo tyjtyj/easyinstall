@@ -10,7 +10,7 @@ sudo apt-get install qbittorrent-nox -y
 echo "Installed"
 sleep 3
 cd /etc/systemd/system
-wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
+wget https://raw.githubusercontent.com/agneevX/easyinstall/master/others/qbittorrent.service -O qbittorrent.service
 sed -i "s/qbtuser/$USER/g" /etc/systemd/system/qbittorrent.service
 sudo systemctl enable qbittorrent.service
 sudo systemctl start qbittorrent.service
