@@ -29,12 +29,19 @@ else
   echo "Skipping Plex-Trakt-Scrobbler installation"
 fi
 
-clear
+
 read -p -r -n1 "Install Rclone? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then
   curl https://raw.githubusercontent.com/agneevX/easyinstall/master/scripts/rclone.sh | sudo bash
 else
   echo "Not installing Rclone."
+fi
+
+read -p -r -n1 "Install rTorrent+Flood? (y/N)?" input
+if [[ $input == "Y" || $input == "y" ]]; then
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/rtorrent/rtorrent_floos.sh | sudo bash
+else
+  echo "Not installing rTorrent+Flood."
 fi
 
 read -p -r -n1 "Install qBittorrent? (y/N)" input

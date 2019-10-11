@@ -27,8 +27,8 @@ if [[ $input == "Y" || $input == "y" ]]; then
   sudo chmod 777 /mnt/media
 
   cd /tmp
-  wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service
-  wget https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
+  wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service
+  wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
 
   sudo cp /tmp/media.service /etc/systemd/system
   sudo cp /tmp/media_refresh.service /etc/systemd/system

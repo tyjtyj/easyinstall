@@ -11,7 +11,7 @@ echo "Installed"
 read -p -r -n1 "Install qbittorrent.service? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then
   cd /etc/systemd/system
-  wget https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
+  wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/qbittorrent.service -O qbittorrent.service
   sed -i "s/qbtuser/$USER/g" /etc/systemd/system/qbittorrent.service
   sudo systemctl enable qbittorrent.service
   sudo systemctl start qbittorrent.service

@@ -6,14 +6,14 @@ sleep 2
 sudo apt-get install unzip -y
 # Downloading Plex-Trakt-Scrobbler
 cd /tmp
-wget https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip
+wget --quiet https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip
 echo "Trakt downloaded"
 unzip /tmp/Plex-Trakt-Scrobbler.zip > /dev/null
 sudo cp -r Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"
 echo "Trakt installed"
 
 # Downloading apsw.so and trakt databases
-wget https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip
+wget --quiet https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip
 unzip trakt.zip > /dev/null
 
 # Changing ownership and copying databases
