@@ -10,5 +10,8 @@ sudo apt update
 sudo apt install -y mono-devel nzbdrone
 
 cd /systemd/system
-wget --quiet -O sonarr_user.service
+wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/unit_files/sonarr.service -O sonarr_user.service
 sed -i "s/sonarr_user/$USER/g" sonarr.service
+
+sudo systemctl enable sonarr
+sudo systemctl start sonarr
