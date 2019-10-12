@@ -19,8 +19,8 @@ cd libtorrent-0.13.8
 # Install rTorrent with rtisnt
 # Including LibTorrent, ruTorrent
 # and
-sudo bash -c "$(wget --no-check-certificate -qO - https://raw.githubusercontent.com/arakasi72/rtinst/master/rtsetup)"
-sudo rtinst -n #Not changing SSH port
+##sudo bash -c "$(wget --no-check-certificate -qO - https://raw.githubusercontent.com/arakasi72/rtinst/master/rtsetup)"
+##sudo rtinst -t #Not changing SSH port
 
 # FLOOD INSTALLATION
 ## Installing Node.js
