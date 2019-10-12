@@ -8,3 +8,7 @@ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 3FA7E0328
 echo "deb https://download.mono-project.com/repo/ubuntu stable-bionic main" | sudo tee /etc/apt/sources.list.d/mono-official-stable.list
 sudo apt update
 sudo apt install -y mono-devel nzbdrone
+
+cd /systemd/system
+wget --quiet -O sonarr_user.service
+sed -i "s/sonarr_user/$USER/g" sonarr.service
