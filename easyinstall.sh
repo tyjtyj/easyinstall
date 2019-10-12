@@ -39,7 +39,7 @@ fi
 
 read -p -r -n1 "Install rTorrent+Flood? (y/N)?" input
 if [[ $input == "Y" || $input == "y" ]]; then
-  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/rtorrent/rtorrent_floos.sh | sudo bash
+  curl https://raw.githubusercontent.com/agneevX/easyinstall/master/rtorrent/rtorrent_flood.sh | sudo bash
 else
   echo "Not installing rTorrent+Flood."
 fi

@@ -40,6 +40,6 @@ sudo npm build
 
 ## Startup script for Flood
 cd /etc/systemd/system
-wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/rtorrent/flood.service -O flood.service
+wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/rtorrent/rtorrent_flood.service -O flood.service
 sudo systemctl enable flood.service
 sudo systemctl start flood
