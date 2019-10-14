@@ -4,11 +4,11 @@ set -e
 IP_ADDRESS=$(ifconfig eth0 | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*')
 clear
 echo "Now downloading Plex"
-sleep 3
+sleep 2
 echo deb https://downloads.plex.tv/repo/deb public main | sudo tee /etc/apt/sources.list.d/plexmediaserver.list
 curl https://downloads.plex.tv/plex-keys/PlexSign.key | sudo apt-key add -
 sudo apt update
-sudo apt -y Dpkg::Options::="--force-confdef" install plexmediaserver
+sudo apt -y install plexmediaserver
 clear
 printf "Plex downloaded.\n"
 sed -i 's/#AllowTCPForwarding yes/AllowTCPForwarding yes/g' /etc/ssh/sshd_config
