@@ -11,8 +11,9 @@ echo "Installed"
 sleep 3
 cd /etc/systemd/system
 wget https://raw.githubusercontent.com/agneevX/easyinstall/master/unit_files/qbittorrent.service -O qbittorrent.service
-sed -i "s/qbtuser/$USER/g" /etc/systemd/system/qbittorrent.service
+sudo sed -i "s/qbtuser/$USER/g" /etc/systemd/system/qbittorrent.service
 sudo systemctl enable qbittorrent.service
 sudo systemctl start qbittorrent.service
+clear
 echo "qBittorrent installed and running at port "$IP_ADDRESS":8080"
 echo "username: admin, password: adminadmin"
