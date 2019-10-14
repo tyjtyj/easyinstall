@@ -37,14 +37,12 @@ sed -i "s/rcloneuser/$USER/g" media_refresh.service
 echo "" >> /opt/media.log
 sudo chmod 777 /opt/media.log
 
-LOCATION=$(rclone config file)
-
 sudo systemctl enable media.service
 sudo systemctl enable media_refresh.service
+clear
 echo "After this script finishes, set the rclone.conf location"
-echo "by sudo nano /etc/systemd/system/media.service"
-printf "and entering\n\n"
-echo "$LOCATION"
-echo "Do not reboot until rclone is configured"
+echo "sudo nano /etc/systemd/system/media.service\n\n"
+printf "/home/$USER/.config/rclone/rclone.conf"
+printf "Do not reboot until rclone is configured\n\n"
 echo "Rclone was installed."
 exit 0
