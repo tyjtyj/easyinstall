@@ -14,7 +14,6 @@ if [ $? -ne 0 ]; then
   echo "Plex downloaded."
 else
   echo "Plex already installed."
-  exit 1
 fi
 sed -i 's/#AllowTCPForwarding yes/AllowTCPForwarding yes/g' /etc/ssh/sshd_config
 sed -i 's/#PermitOpen any/PermitOpen any/g' /etc/ssh/sshd_config
