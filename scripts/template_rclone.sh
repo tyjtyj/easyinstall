@@ -23,16 +23,12 @@ curl https://rclone.org/install.sh | sudo bash
 sudo mkdir /mnt/media
 sudo chmod 777 /mnt/media
 
-cd /tmp
-wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media.service -O media.service
-wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/rclone/media_refresh.service -O media_refresh.service
+cd /etc/systemd/system
+wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/unit_files/media.service -O media.service
+wget --quiet https://raw.githubusercontent.com/agneevX/easyinstall/master/unit_files/media_refresh.service -O media_refresh.service
 
 sudo chmod 755 media.service
 sudo chmod 755 media_refresh.service
-
-sudo cp media.service /etc/systemd/system
-sudo cp media_refresh.service /etc/systemd/system
-
 
 sed -i "s/rcloneuser/$USER/g" media.service
 sed -i "s/rcloneuser/$USER/g" media_refresh.service

@@ -6,8 +6,8 @@ After=media.service
 Type=simple
 
 ExecStart=/usr/bin/rclone rc vfs/refresh recursive=true
-User=root
-Group=root
+User=rcloneuser
+Group=rcloneuser
 
 [Install]
 WantedBy=multi-user.target
