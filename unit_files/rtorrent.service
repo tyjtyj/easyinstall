@@ -1,0 +1,14 @@
+[Unit]
+Description=rTorrent startup unit file
+After=network-online.target
+
+[Service]
+Type=simple
+KillMode=process
+User=rtorrent_user
+ExecStart=/usr/local/bin/rtorrent -n -o system.daemon.set=true
+#WorkingDirectory=%h
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

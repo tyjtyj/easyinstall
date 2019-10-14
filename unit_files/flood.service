@@ -3,14 +3,10 @@ Description=Flood startup
 After=network-online.target
 
 [Service]
-WorkingDirectory=/opt/flood
+WorkingDirectory=/home/user/flood
 ExecStart=/usr/bin/npm start
 Restart=always
-# StandardOutput=syslog
-# StandardError=syslog
-# SyslogIdentifier=notell
 User=root
-Group=root
 
 [Install]
 WantedBy=multi-user.target
