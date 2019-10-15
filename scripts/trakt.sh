@@ -16,21 +16,21 @@ echo "Trakt installed"
 wget --quiet https://www.dropbox.com/s/jo9jam8n73htkqc/trakt.zip?dl=1 -O trakt.zip
 unzip trakt.zip > /dev/null
 
-# Changing ownership and copying databases
-sudo chown plex:plex /tmp/trakt/com.plexapp.plugins.trakttv.db
-sudo chown plex:plex /tmp/trakt/com.plexapp.plugins.trakttv.db-shm
-sudo chown plex:plex /tmp/trakt/com.plexapp.plugins.trakttv.db-wal
-sudo chmod u=rw,g=r,o=r /tmp/trakt/com.plexapp.plugins.trakttv.db
-sudo chmod u=rw,g=r,o=r /tmp/trakt/com.plexapp.plugins.trakttv.db-shm
-sudo chmod u=rw,g=r,o=r /tmp/trakt/com.plexapp.plugins.trakttv.db-wal
+# Copying databases and changing ownership
 sudo cp /tmp/trakt/apsw.so /usr/lib/plexmediaserver/Resources/Python/lib/python2.7/lib-dynload
 sudo cp /tmp/trakt/com.plexapp.plugins.trakttv.db "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
 sudo cp /tmp/trakt/com.plexapp.plugins.trakttv.db-shm "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
 sudo cp /tmp/trakt/com.plexapp.plugins.trakttv.db-wal "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
-echo "Moved databases"
-sleep 3
-
+cd "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases"
+sudo chown plex:plex "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
+sudo chown plex:plex "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
+sudo chown plex:plex "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
+sudo chmod u=rw,g=r,o=r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
+sudo chmod u=rw,g=r,o=r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
+sudo chmod u=rw,g=r,o=r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
 sudo systemctl restart plexmediaserver
 echo "Restarted Plex"
-sleep 2
+clear
+
 echo "Trakt is now installed"
+sleep 2
