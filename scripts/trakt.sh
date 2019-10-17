@@ -7,6 +7,7 @@ sudo apt-get install unzip -y
 # Downloading Plex-Trakt-Scrobbler
 cd /tmp
 wget --quiet https://github.com/trakt/Plex-Trakt-Scrobbler/archive/master.zip -O Plex-Trakt-Scrobbler.zip
+clear
 echo "Trakt downloaded"
 unzip /tmp/Plex-Trakt-Scrobbler.zip > /dev/null
 sudo cp -r Plex-Trakt-Scrobbler-*/Trakttv.bundle "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-ins/"
@@ -28,9 +29,9 @@ sudo chown plex:plex "/var/lib/plexmediaserver/Library/Application Support/Plex 
 sudo chmod u=rw,g=r,o=r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
 sudo chmod u=rw,g=r,o=r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
 sudo chmod u=rw,g=r,o=r "/var/lib/plexmediaserver/Library/Application Support/Plex Media Server/Plug-in Support/Databases/com.plexapp.plugins.trakttv.db"
-sudo systemctl restart plexmediaserver
+sudo systemctl stop plexmediaserver
+sudo systemctl start plexmediaserver
 echo "Restarted Plex"
-clear
 
 echo "Trakt is now installed"
 sleep 2
